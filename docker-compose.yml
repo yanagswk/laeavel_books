@@ -5,4 +5,12 @@ services:
         build: ./infra/php  # Dockerfileがある場所
         volumes:
             - ./backend:/work   #ホスト側の ./backend ディレクトリをappサービスのコンテナ内 /work へマウント
-        
+    # webサーバー
+    web:
+        image: nginx:1.20-alpine    # 公式のnginxイメージ Dockerfile不使用
+        ports:
+            - 8080:80   # 公開ポート設定 ホスト側:コンテナ側
+        volumes:
+            - ./backend:/work
+            - ./infra/nginx/default.conf:/etc/nginx/conf.d/default.conf     # コンテナへマウント
+        working_dir: /work
