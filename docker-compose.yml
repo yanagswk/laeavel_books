@@ -14,3 +14,11 @@ services:
             - ./backend:/work
             - ./infra/nginx/default.conf:/etc/nginx/conf.d/default.conf     # コンテナへマウント
         working_dir: /work
+    # DBサーバー
+    db: 
+        build: ./infra/mysql
+        volumes: 
+            - db-store:/var/lib/mysql
+    
+volumes: 
+    db-store:
