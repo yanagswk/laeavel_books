@@ -1,0 +1,8 @@
+version: "3.9"
+services:
+    # アプリケーションサーバー
+    app:
+        build: ./infra/php  # Dockerfileがある場所
+        volumes:
+            - ./backend:/work   #ホスト側の ./backend ディレクトリをappサービスのコンテナ内 /work へマウント
+        
